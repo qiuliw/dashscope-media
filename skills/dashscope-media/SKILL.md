@@ -10,7 +10,7 @@ description: >
 
 # DashScope Media — 阿里百炼 通义万相 图片/视频生成
 
-调用**阿里云百炼**（DashScope，国际版/国内版均可）的通义万相（wanx / wan2.x）系列模型，
+调用**阿里云百炼**（DashScope，国际版/国内版均可）的通义万相（wanx / wan2.x / wan3.0）系列模型，
 生成图片与视频。图片**原生支持 9:16 竖版**（短视频封面）、视频支持文生视频/图生视频，
 任务完成后自动下载到本地。
 
@@ -28,7 +28,8 @@ description: >
   - 国际版（默认）：`--region intl` → `https://dashscope-intl.aliyuncs.com/api/v1`
   - 国内版：`--region cn` → `https://dashscope.aliyuncs.com/api/v1`
   - 也可环境变量 `DASHSCOPE_REGION=cn|intl` 或 `DASHSCOPE_ENDPOINT=<完整URL>` 切换
-  - ⚠️ 用哪个区域的 Key，就配哪个区域的端点（两边 Key 不通用）
+  - 第三方网关（如 new-api）：`DASHSCOPE_ENDPOINT=https://your-host/ali/api/v1`，`--region` 也可直接传该完整 URL；Key 用网关 Token
+  - ⚠️ 用哪个区域的 Key，就配哪个区域的端点（两边 Key 不通用；网关 Key 与官方 Key 也不通用）
 - **依赖**：Python 3.8+，仅标准库（urllib），无需 pip 安装
 
 ## 快速上手
@@ -74,6 +75,8 @@ python3 ~/.pi/agent/skills/dashscope-media/scripts/dashscope_media.py poll <task
 
 | 模型 id | 说明 |
 |---|---|
+| `wan3.0-video` | 3.0 统一视频（百炼原生 / new-api `/ali` 透传） |
+| `wan3.0-video-prime` | 3.0 Prime |
 | `wan2.7-t2v` | 2.7 文生视频（新协议，最长 15s，1080P） |
 | `wan2.6-t2v` | 2.6 文生视频（推荐） |
 | `wan2.7-i2v` | 2.7 图生视频（首帧/首尾帧/续写） |

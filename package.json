@@ -1,7 +1,7 @@
 {
   "name": "dashscope-media",
   "version": "1.0.0",
-  "description": "阿里百炼通义万相图片/视频生成 Agent Skill：原生 9:16 竖版封面、文生图/文生视频/图生视频，兼容 pi / Codex / Claude Code 等 agent",
+  "description": "阿里百炼通义万相图片/视频生成 Agent Skill：支持 wan3.0、自定义 DASHSCOPE_ENDPOINT（含 new-api），原生 9:16，兼容 pi / Codex / Claude Code / Cursor",
   "keywords": [
     "pi-package",
     "skill",
@@ -12,10 +12,14 @@
     "通义万相",
     "阿里百炼",
     "image-generation",
-    "video-generation"
+    "video-generation",
+    "wan3",
+    "new-api"
   ],
   "license": "MIT",
   "pi": {
-    "skills": ["./skills"]
+    "skills": [
+      "./skills"
+    ]
   }
 }

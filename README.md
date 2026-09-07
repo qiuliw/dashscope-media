@@ -1,6 +1,6 @@
 # DashScope Media — 阿里百炼通义万相 图片/视频生成 Skill
 
-一个开源的 **Agent Skill**，封装阿里云百炼（DashScope，**国际版/国内版均可**）通义万相（wanx / wan2.x）模型，支持：
+一个开源的 **Agent Skill**，封装阿里云百炼（DashScope，**国际版/国内版/自定义网关均可**）通义万相（wanx / wan2.x / wan3.0）模型，支持：
 - **图片**：文生图，**原生 9:16 竖版**（短视频封面）、16:9 / 1:1 等任意宽高比
 - **视频**：文生视频、图生视频、首尾帧，异步任务自动轮询并下载成片
 
@@ -50,7 +50,8 @@ dashscope-media/
      - 国际版：`--region intl` → `https://dashscope-intl.aliyuncs.com`
      - 国内版：`--region cn` → `https://dashscope.aliyuncs.com`
      - 也可环境变量 `DASHSCOPE_REGION=cn` / `DASHSCOPE_ENDPOINT=<完整URL>` 切换
-     - ⚠️ 用哪个区域的 Key 就配哪个区域端点（两边 Key 不通用）
+     - 第三方网关（如 new-api）：`DASHSCOPE_ENDPOINT=https://your-host/ali/api/v1`，Key 用网关 Token；`--region` 也可直接传完整 URL
+     - ⚠️ 用哪个区域的 Key 就配哪个区域端点（两边 Key 不通用；网关 Key 与官方 Key 也不通用）
 
 ---
 
@@ -65,13 +66,13 @@ dashscope-media/
 
 ```bash
 # 安装到指定 agent（codex / claude-code / cursor / gemini ...）
-npx skills add chenyang-99/dashscope-media --skill dashscope-media --agent codex
+npx skills add qiuliw/dashscope-media --skill dashscope-media --agent codex
 
 # 装到所有支持的 agent
-npx skills add chenyang-99/dashscope-media --skill dashscope-media --all
+npx skills add qiuliw/dashscope-media --skill dashscope-media --all
 
 # 装到用户目录（而非项目目录）
-npx skills add chenyang-99/dashscope-media --skill dashscope-media -g
+npx skills add qiuliw/dashscope-media --skill dashscope-media -g
 ```
 
 装完重启对应 agent 即可生效。
@@ -92,7 +93,7 @@ npx skills add chenyang-99/dashscope-media --skill dashscope-media -g
 ### 方式 3：pi 用户（仅 pi 环境）
 
 ```bash
-pi install git:github.com/chenyang-99/dashscope-media
+pi install git:github.com/qiuliw/dashscope-media
 ```
 
 （npm 发布后也可 `pi install npm:dashscope-media`）
@@ -149,6 +150,8 @@ python3 ~/.pi/agent/skills/dashscope-media/scripts/dashscope_media.py poll <task
 
 | 模型 id | 说明 |
 |---|---|
+| `wan3.0-video` | 3.0 统一视频（百炼原生 / new-api `/ali` 透传） |
+| `wan3.0-video-prime` | 3.0 Prime |
 | `wan2.7-t2v` | 2.7 文生视频（新协议，最长 15s，1080P） |
 | `wan2.6-t2v` | 2.6 文生视频（推荐） |
 | `wan2.7-i2v` | 2.7 图生视频（首帧/首尾帧/续写） |
@@ -190,3 +193,9 @@ MIT License © 2026
 
 - 参数细节、官方 API 文档链接见 [API-REFERENCE.md](skills/dashscope-media/API-REFERENCE.md)
 - 欢迎提交 issue / PR 完善模型支持与功能
+
+---
+
+## 致谢
+
+本仓库基于 [chenyang-99/dashscope-media](https://github.com/chenyang-99/dashscope-media)（MIT），增加 `wan3.0-video` 模型白名单与 new-api / 自定义 `DASHSCOPE_ENDPOINT` 用法说明。

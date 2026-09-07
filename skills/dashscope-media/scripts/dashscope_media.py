@@ -63,6 +63,8 @@ IMAGE_MODELS = {
 }
 # 视频模型（文生视频 t2v / 图生视频 i2v）
 VIDEO_MODELS = {
+    "wan3.0-video": "3.0 统一视频（百炼 / new-api 透传）",
+    "wan3.0-video-prime": "3.0 Prime（百炼 / new-api 透传）",
     "wan2.7-t2v": "2.7 文生视频（新协议，2-15s，1080P）",
     "wan2.6-t2v": "2.6 文生视频（推荐）",
     "wan2.5-t2v": "2.5 文生视频",
